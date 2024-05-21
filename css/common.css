@@ -1,0 +1,227 @@
+@charset "UTF-8";
+body {
+  background-color: #F0EDEB;
+  font-family: "Noto Serif JP", serif;
+}
+
+body h1 {
+  text-align: center;
+}
+body h1 a {
+  text-decoration: none;
+  color: black;
+}
+@media (max-width: 1221px) {
+  body {
+    /*スマホ時の表示*/
+  }
+  body h1 {
+    font-size: 140%;
+  }
+  body .display_PC_header li {
+    display: none;
+  }
+}
+@media (min-width: 1222px) {
+  body {
+    /*パソコン時の表示1222*/
+    padding: 1vh 150px 0vh 150px;
+  }
+  body .nav-list {
+    text-align: center;
+    padding: 10px 0;
+    margin: 0 auto;
+  }
+  body .nav-list-item {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+  }
+  body .nav-list-item a {
+    color: black;
+    text-decoration: none;
+  }
+  body .nav-list-item a:hover {
+    color: red;
+    text-decoration: underline;
+    font-weight: bold;
+  }
+}
+
+/**/
+.hamburger {
+  display: block;
+  position: fixed;
+  z-index: 3;
+  right: 13px;
+  top: 12px;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  left: 6px;
+  background: #555;
+  transition: 0.3s ease-in-out;
+}
+
+.hamburger span:nth-child(1) {
+  top: 10px;
+}
+
+.hamburger span:nth-child(2) {
+  top: 20px;
+}
+
+.hamburger span:nth-child(3) {
+  top: 30px;
+}
+
+/* ナビ開いてる時のボタン */
+.hamburger.active span:nth-child(1) {
+  top: 16px;
+  left: 6px;
+  background: #fff;
+  transform: rotate(-45deg);
+}
+
+.hamburger.active span:nth-child(2),
+.hamburger.active span:nth-child(3) {
+  top: 16px;
+  background: #fff;
+  transform: rotate(45deg);
+}
+
+nav.globalMenuSp {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+nav.globalMenuSp ul {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+}
+
+nav.globalMenuSp ul li {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  transition: 0.4s all;
+}
+
+nav.globalMenuSp ul li:last-child {
+  padding-bottom: 0;
+}
+
+nav.globalMenuSp ul li:hover {
+  background: #ddd;
+}
+
+nav.globalMenuSp ul li a {
+  display: block;
+  color: #fff;
+  padding: 1em 0;
+  text-decoration: none;
+}
+
+nav.globalMenuSp ul li a:hover {
+  color: red;
+  background-color: gray;
+}
+
+nav.globalMenuSp.active {
+  opacity: 100;
+}
+
+nav.globalMenuSp.disabled {
+  pointer-events: none;
+  opacity: 0;
+}
+
+/**/
+main {
+  background-color: #FFF5EE;
+}
+main h2 {
+  display: inline-block;
+  padding: 0.4em 1em;
+  color: #494949;
+  background: #f4f4f4;
+  border-left: solid 5px grey;
+  border-right: solid 5px grey;
+  border-bottom: solid 3px #d7d7d7;
+  margin-bottom: 5px;
+}
+@media (min-width: 1222px) {
+  main {
+    /*パソコン時の表示1222*/
+  }
+  main .main-content {
+    padding-left: 150px;
+  }
+  main .main-content p {
+    padding-left: 20px;
+  }
+}
+@media (max-width: 1221px) {
+  main {
+    /*スマホ時の表示*/
+  }
+  main h2 {
+    font-size: 120%;
+  }
+  main p {
+    font-size: 90%;
+  }
+}
+
+footer {
+  background-color: #F0EDEB;
+}
+footer h1 {
+  text-align: left;
+}
+@media (max-width: 1221px) {
+  footer {
+    /*スマホ時の表示*/
+  }
+  footer li {
+    list-style: none;
+  }
+  footer a {
+    color: black;
+    text-decoration: none;
+  }
+  footer #foot p {
+    font-size: 80%;
+  }
+}
+@media (min-width: 1222px) {
+  footer ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 10px;
+  }
+  footer ul li a {
+    color: black;
+    text-decoration: none;
+  }
+  footer ul li a:hover {
+    color: red;
+  }
+}/*# sourceMappingURL=common.css.map */
