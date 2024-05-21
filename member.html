@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="tbJDLE558ZKldrNDYl0OPTidWHDJoyXMbn0S4ZLPQKQ" />
+    <link rel="icon" href="image/image.png">
+    <title>部員一覧</title>
+    <link href="css/common.css" rel="stylesheet">
+    <style>
+        .member {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .member div {
+            flex: 1 0 25%;
+            text-align: center;
+        }
+
+        .empty-div {
+            flex: 1 0 25%;
+        }
+
+        .profile {
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+        }
+
+        /* @media (max-width: 1221px) {
+            .profile {
+                width: 75px;
+                height: 75px;
+            }
+        } */
+
+        .modal {
+            text-align: center;
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 75%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .detailMember {
+            padding-left: 30%;
+            padding-right: 30%;
+        }
+
+        @media (max-width: 1221px) {
+            .detailMember {
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+        }
+    </style>
+</head>
+
+<body style="display:none;">
+    <header>
+        <div id="head">
+            <script src="js/header.js"></script>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="js/hamburger.js"></script>
+    </header>
+    <main>
+        <div id="main_content">
+            <h2>部員一覧</h2>
+            <strong>
+                <p style="color: red;">画像をクリックするとメンバーの目標が見れます。</p>
+            </strong>
+        </div>
+        <script>
+            // 開発の都合上、最初瞬間的にCSS、JSがジャムってしまうのでsetTimeout関数で0.5秒非表示にしている。
+            setTimeout(() => {
+                document.body.style.display = "block";
+            }, 500);
+
+            const memberData = [
+                { id: '27', name: "吾妻 敬也", image: "image/profile/profile.png", goal1: "サブ3達成", goal2: "内定もらう" },
+
+                { id: '29', name: "德田 龍輝", image: "image/profile/profile.png", goal1: "ジョグをする", goal2: "勉強をする" },
+                { id: '29', name: "宮﨑 颯", image: "image/profile/宮﨑颯.jpeg", goal1: "入賞", goal2: "単位" },
+                { id: '29', name: "勝又 四海", image: "image/profile/勝又四海.jpeg", goal1: "何かしら大会にでる", goal2: "勉強" },
+                { id: '29', name: "高野 流空", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+                { id: '29', name: "粟木 恭司", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+                { id: '29', name: "若月 雄也", image: "image/profile/profile.png", goal1: "雨でも雪でも毎日練習する", goal2: "いろんなおかずでご飯を食べる" },
+                { id: '29', name: "辻󠄀 達也", image: "image/profile/辻達也.png", goal1: "怪我せず、オリンピックディスタンスを完走することだね", goal2: "TOEICTOEICTOEICTOEICTOEIC勉強勉強勉強勉強勉強勉強" },
+                { id: '29', name: "野坂 匠吾", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+
+                { id: '30', name: "内田 龍一", image: "image/profile/profile.png", goal1: "フルマラソンサブ４", goal2: "朝ごはんを食べる" },
+                { id: '30', name: "新井 拓希", image: "image/profile/新井拓希.jpg", goal1: "佐渡A年代別1位", goal2: "寝坊しない" },
+                { id: '30', name: "小林 和", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+                { id: '30', name: "宇佐見 隼平", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+                { id: '30', name: "鈴木 杏実花", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+                { id: '30', name: "玉田 紗楽", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+                { id: '30', name: "平田 ゆり", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+                { id: '30', name: "大高 眞", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+                
+                { id: '31', name: "笠間 堅杜", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+                { id: '31', name: "辻本 渉之介", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+                { id: '31', name: "荒木 悠仁", image: "image/profile/荒木悠仁.jpeg", goal1: "健康維持", goal2: "コミュ力欲しい" },
+                { id: '31', name: "伊瀨 智三郎", image: "image/profile/profile.png", goal1: "滝沢峠ヒルクライム15分台", goal2: "早起き" },
+                { id: '31', name: "菅野 貴也", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+                { id: '31', name: "石塚 大理", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+                { id: '31', name: "遠藤 康介", image: "image/profile/遠藤康介.jpg", goal1: "痩せる！練習行く！", goal2: "webとiosのアプリ開発を頑張る‼朝起きる‼" },
+                { id: '31', name: "石田 柊生", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+                { id: '31', name: "渡邊 光琉", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+
+                { id: '32', name: "募集中", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+
+                { id: '31', name: "佐藤 実紗", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+                { id: '31', name: "後藤 未桜", image: "image/profile/profile.png", goal1: "ハーフマラソンを1時間45分で走る。", goal2: "イベントに参加する。" },
+
+                { id: '32', name: "募集中", image: "image/profile/profile.png", goal1: "考え中...!", goal2: "考え中...!" },
+
+            ];
+            const grade = [ '大学院生', '学部4年', '学部3年', '学部2年', '学部1年','短期大学2年', '短期大学1年'];
+
+            function clickimage(tag) {
+                var index = parseInt(tag - 1);
+                var member = memberData[index];
+                showModal(member.goal1, member.goal2, member.image, member.name);
+            }
+
+
+            function showModal(goal1, goal2, imageSrc, name) {
+                var existingModal = document.getElementById('myModal');
+                if (existingModal) {
+                    existingModal.remove();
+                }
+                var modalHtml = `
+        <div id="myModal" class="modal" style="text-align: center;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div>
+                    <br>
+                    <img src="${imageSrc}" style="width: 100px; height: 100px; border-radius: 50%;">
+                </div>
+                <div class="detailMember" style="text-align: left;">
+                  <p><strong>名前:</strong>${name}</p>
+                  <p><strong>運動面の目標:</strong>${goal1}</p>
+                  <p><strong>生活面等の目標:</strong>${goal2}</p>
+                </div>
+            </div>
+        </div>
+    `;
+                document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+                var modal = document.getElementById('myModal');
+                var span = document.getElementsByClassName("close")[0];
+
+                modal.style.display = "block";
+
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }
+
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            }
+
+
+            function createMemberList() {
+                var main_content = document.getElementById('main_content');
+                var currentId = memberData[0].id;
+                var h3Count = 0;
+
+                var $div_member = document.createElement('div');
+                $div_member.classList.add('member');
+                main_content.appendChild(createGradeHeader(currentId, h3Count++));
+                main_content.appendChild($div_member);
+
+                var count = 0;
+                var ciCount = 0;
+
+                memberData.forEach(member => {
+                    if (member.id !== currentId || count === 4) {
+                        fillEmptySpaces($div_member, count); // 空のdivを追加して行を揃える
+
+                        if (member.id !== currentId) {
+                            currentId = member.id;
+                            main_content.appendChild(createGradeHeader(currentId, h3Count++));
+                        }
+
+                        $div_member = document.createElement('div');
+                        $div_member.classList.add('member');
+                        main_content.appendChild($div_member);
+                        count = 0;
+                    }
+
+                    var $div_detail = document.createElement('div');
+                    $div_detail.id = "detail_" + (ciCount + 1);
+
+                    var $img = document.createElement('img');
+                    $img.classList.add('profile');
+                    $img.src = member.image;
+                    $img.loading = "lazy";
+
+                    var $p = document.createElement('p');
+                    $p.textContent = member.name;
+
+                    $div_detail.appendChild($img);
+                    $div_detail.appendChild($p);
+                    $div_member.appendChild($div_detail);
+
+                    count++;
+                    ciCount++;
+                });
+
+                fillEmptySpaces($div_member, count); // 最後の行に対しても空のdivを追加
+            }
+
+            function fillEmptySpaces(div, count) {
+                while (count % 4 !== 0) {
+                    var $empty_div = document.createElement('div');
+                    $empty_div.classList.add('empty-div');
+                    div.appendChild($empty_div);
+                    count++;
+                }
+            }
+
+            function createGradeHeader(currentId, h3Count) {
+                var $h3 = document.createElement('h3');
+                $h3.textContent = grade[h3Count];
+                return $h3;
+            }
+
+
+            window.onload = function () {
+                createMemberList();
+                var images = document.querySelectorAll('img.profile');
+                var clickIndex = 1;
+
+                images.forEach(function (img) {
+                    img.setAttribute('onclick', 'clickimage(' + clickIndex + ')');
+                    clickIndex++;
+                });
+                handleResize();
+                window.addEventListener('resize', handleResize);
+            };
+
+            function handleResize() {
+                const currentWidth = window.innerWidth;
+                const profileImages = document.querySelectorAll('.profile');
+
+                if (currentWidth < 1440) {
+                    const ratio = currentWidth / 1440;
+                    profileImages.forEach(function (img) {
+                        img.style.width = `${180 * ratio}px`;
+                        img.style.height = `${180 * ratio}px`;
+                    });
+                } else {
+                    profileImages.forEach(function (img) {
+                        img.style.width = '180px';
+                        img.style.height = '180px';
+                    });
+                }
+            }
+        </script>
+
+       
+    </main>
+    <footer>
+        <div id="foot">
+            <script src="js/footer.js"></script>
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>
