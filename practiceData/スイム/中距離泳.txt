@@ -1,0 +1,53 @@
+【A】通常メニュー
+  up: 100m * 4 (2’30) or 10分間の自由泳 その後 rest 1'00
+        スカーリング (‘30 + ‘20rest) * 2
+        立ち泳ぎ (‘30 + ‘20rest) * 2
+
+  kick: 100m * 2
+        ボード (2’50, 3’10, 3’30, 3'50)
+        グライド (2’50, 3’10, 3’30, 3'50)
+
+  pull: 100m * 2
+        キャッチアップ (2'50, 3'10, 3'30, 3'50)
+        ショルダータッチ (2'50, 3'10, 3'30, 3'50)
+
+  drill: 25m * 6 ('50)
+  行き:チラ見
+  帰り:ヘッドアップ
+
+  main: 中距離泳 rest 3'00
+  500m * 3 or 500 * 2
+
+【B】初心者メニュー
+  up: 100m * 2 (3'00) or 6分間の自由泳 その後 rest 1'00
+        スカーリング (‘30 + ‘20rest) * 2
+  立ち泳ぎ (‘30 + ‘20rest) * 2
+
+  kick: 50m * 2
+        ボード (2'00)
+        グライド (2'00)
+
+  pull: 50m * 2 * 2
+        キャッチアップ (2'00)
+        ショルダータッチ (2'00)
+
+  drill: 25m * 6 ('50)
+        行き:チラ見
+        帰り:ヘッドアップ
+
+  main: 中距離泳 rest 3'00
+        250m * 2
+
+schedule【A】
+  up : 15minutes
+  kick : 8minutes
+  pull : 8minutes
+  drill : 6minutes
+  main : 25minutes
+
+schedule【B】
+  up : 11minutes
+  kick : 4minutes
+  pull : 8minutes
+  drill : 6minutes
+  main : 18minutes
